@@ -172,19 +172,15 @@ add_to_g:
     add $s0, $s0, $t2  #Add to G
 next:
     addi $a0, $a0, 1  #next char
+    addi $s2, $s2, 1
     j process_char
-end_loop:
+end_processing:
     #Check if total sum is zero
-    add $t6, $s0, $s1
-    beqz $t6, print_na
+    beqz $s3, return_null
+    sub $v0, $s0, $s1   #G-H
+    j epilogue
 
-    #Calculate and print G - H 
-    sub $a0,$s0,$s1
-    li $v0, 1
-    syscall
-    j exit
-
-print_na:
+return_null:
     #print N/A 
     la $a0, n_a
     li $v0, 4
