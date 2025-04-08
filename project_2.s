@@ -162,16 +162,17 @@ invalid:
     addi $a0, $a0, 1 #Next character
     addi $s2, $s2, 1
     j process_char  #Skip invalid character 
-add_sum:
-    #Check if in first half 
-    blt $t0, 5, add_g
-    add $s1, $s1, $t5  #Add to H 
-    j next_char
-add_g:
-    add $s0, $s0, $t5  #Add to G
-next_char:
-    addi $t0, $t0, 1  #i + 1
-    j process_loop
+
+valid_digit:
+    addi $s3, $s3, 1 #increment valid counter
+    blt $s2, 5, add_to_g
+    add $s1, $s1, $t2  #Add to H 
+    j next
+add_to_g:
+    add $s0, $s0, $t2  #Add to G
+next:
+    addi $a0, $a0, 1  #next char
+    j process_char
 end_loop:
     #Check if total sum is zero
     add $t6, $s0, $s1
