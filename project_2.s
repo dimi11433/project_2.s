@@ -30,6 +30,9 @@ replace_newline:
     sb $zero, 0($t0)  #Replace newline with null
 
 end_find_length:
+    addi $t3, $t1, 9
+    divu $t3, $t3, 10 #$t3 = num_strings
+    li $t5, 0 #Substring index 
 
 
 
