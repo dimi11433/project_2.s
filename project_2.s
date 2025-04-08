@@ -69,6 +69,7 @@ call_subprogram:
     sw $t3, 0($sp)
     sw $t5, 4($sp)
     sw $t1, 8($sp)
+    sw $ra, 12($sp)
     
     la $a0, substring_buf
     jal get_substring_value
@@ -90,7 +91,7 @@ call_subprogram:
     j check_separator
 print_null:
     la $a0, null_str   #Print "NULL"
-    li $vo, 4
+    li $v0, 4
     syscall
 check_separator:
     addi $t5, $t5, 1     #Increment substring index
@@ -128,7 +129,7 @@ process_char:
     bge $s2, 10, end_processing  #Exit loop if i >= 10
 
     #Load current character
-    lb, $t0, 0($t0)
+    lb, $t0, 0($a0)
 
     #Check if character is a digit (0-9)
 
@@ -152,7 +153,7 @@ check_upper:
     #Check uppercase A-Z(ASCII 65-91)
     li $t1, 'A'
     blt $t0, $t1, invalid
-    li $t11, 'Q'
+    li $t1, 'Q'
     bgt $t0, $t1, invalid
     subu $t2, $t0, 'A' # c - 'A'
     addi $t2, $t2, 10 #value = 10 + (c- 'A')
