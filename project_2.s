@@ -55,6 +55,15 @@ fill_substring:
     lb $t9, 0($t9)
     j store_char
 
+pad_space:
+    li $t9, ' '   #Pad with space
+
+store_char:
+    sb $t9, 0($t6)  #Store in substring buffer
+    addi $t6, $t6, 1
+    addi $t7, $t7, 1
+    j fill_substring
+
 
 process_loop:
     bge $t0, 10, end_loop  #Exit loop if i >= 10
