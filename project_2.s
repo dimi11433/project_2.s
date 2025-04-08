@@ -1,6 +1,6 @@
 .data 
 input_buffer: .space 1001 #Buffer for user input(1000 chars + Null)
-substring_buff: .space 11   #10 chars plus null for processing
+substring_buf: .space 11   #10 chars plus null for processing
 null_str: .asciiz "NULL" #Null output string 
 semicolon: .asciiz ";"  #Seperator 
 
@@ -69,8 +69,17 @@ call_subprogram:
     sw $t3, 0($sp)
     sw $t5, 4($sp)
     sw $t1, 8($sp)
-    sw $ra, 12($sp)
     
+    la $a0, substring_buf
+    jal get_substring_value
+
+    #Restore registers
+    lw $t3, 0($sp)
+    lw $t5, 4($sp)
+    lw $t1, 8($sp)
+    lw $ra 12($sp)
+    addi $sp, $sp, 16 
+
 
 process_loop:
     bge $t0, 10, end_loop  #Exit loop if i >= 10
