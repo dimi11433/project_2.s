@@ -1,6 +1,6 @@
 .data 
 input_buffer: .space 1001 #Buffer for user input(1000 chars + Null)
-substring_buff .space11   #10 chars plus null for processing
+substring_buff: .space 11   #10 chars plus null for processing
 null_str: .asciiz "NULL" #Null output string 
 semicolon: .asciiz ";"  #Seperator 
 
@@ -14,11 +14,13 @@ main:
     li $a1, 11 #read up to 10 characters
     syscall
 
-    #Initialize G and H sums
-    li $s0, 0 #G = 0(first half sum)
-    li $s1, 0 #H = 0(second half sum)
-
-    li $t0, 0 #Loop counter(i = 0 to 9)
+    #Calculate input length
+    la $t0, input_buffer
+    li $t1, 0
+find_length:
+    lb $t2, 0($t0)
+    beqz $t2, end_find_length #Null terminator
+    li $t3, 10
 
 process_loop:
     bge $t0, 10, end_loop  #Exit loop if i >= 10
