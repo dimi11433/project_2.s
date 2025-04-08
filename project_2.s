@@ -124,20 +124,20 @@ get_substring_value:
 
 
 
-process_loop:
-    bge $t0, 10, end_loop  #Exit loop if i >= 10
+process_char:
+    bge $s2, 10, end_processing  #Exit loop if i >= 10
 
     #Load current character
-    lb, $t2, input_buffer($t0)
+    lb, $t0, 0($t0)
 
     #Check if character is a digit (0-9)
 
-    li $t3, 48   #'0' ASCII
-    li $t4, 57   #'9' ASCII
-    blt $t2, $t3, check_lower
-    bgt $t2, $t4, check_lower
-    sub $t5, $t2, $t3 #Converting the value to (0-9)
-    j add_sum
+    li $t1, '0'   #'0' ASCII
+    blt $t0, $t1, check_lower
+    li $t1, '9'   #'9' ASCII
+    bgt $t0, $t1, check_lower
+    subu $t2, $t0, '0' #Converting the value to (0-9)
+    j valid_dgit
 
 check_lower:
     #check lowercase a-z(ASCII 97-122)
