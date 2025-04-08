@@ -181,12 +181,7 @@ end_processing:
     j epilogue
 
 return_null:
-    #print N/A 
-    la $a0, n_a
-    li $v0, 4
-    syscall
-
-exit:
-    #Exit program
-    li $v0, 10
-    syscall
+    li $v0, 0x7FFFFFFF  #Return Null code
+epilogue:
+    #Restore registers
+    
