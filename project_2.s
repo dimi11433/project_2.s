@@ -80,6 +80,15 @@ call_subprogram:
     lw $ra 12($sp)
     addi $sp, $sp, 16 
 
+    #Handle result
+    li $t0, 0x7FFFFFFF
+    beq $v0, $t0, print_null
+
+    move $a0, $v0  #Print integer result
+    li $v0, 1
+    syscall
+    j check_separator
+
 
 process_loop:
     bge $t0, 10, end_loop  #Exit loop if i >= 10
