@@ -102,6 +102,15 @@ check_separator:
 
     j process_substrings
 
+exit_program:
+    li $v0, 10      #Exit
+    syscall 
+
+#Sub program: We need to get the substring value 
+#Input is $a0 address of the ten character substring 
+#Output $v0 G-H or 0x7FFFFFFFF
+
+
 process_loop:
     bge $t0, 10, end_loop  #Exit loop if i >= 10
 
