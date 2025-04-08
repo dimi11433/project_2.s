@@ -63,7 +63,14 @@ store_char:
     addi $t6, $t6, 1
     addi $t7, $t7, 1
     j fill_substring
-
+call_subprogram:
+    #Save registers
+    addi $sp, $sp, -16
+    sw $t3, 0($sp)
+    sw $t5, 4($sp)
+    sw $t1, 8($sp)
+    sw $ra, 12($sp)
+    
 
 process_loop:
     bge $t0, 10, end_loop  #Exit loop if i >= 10
