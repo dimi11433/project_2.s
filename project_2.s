@@ -34,6 +34,12 @@ end_find_length:
     divu $t3, $t3, 10 #$t3 = num_strings
     li $t5, 0 #Substring index 
 
+process_substrings:
+    bge $t5, $t3, exit_program #All substrings have been processed
+
+    #Prepare substring 
+    la $t6, substring_buf
+    li $t7, 0      #Char counter (0-9)
 
 
 process_loop:
