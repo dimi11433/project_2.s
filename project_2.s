@@ -129,7 +129,7 @@ process_char:
     bge $s2, 10, end_processing  #Exit loop if i >= 10
 
     #Load current character
-    lb, $t0, 0($a0)
+    lb $t0, 0($a0)
 
     #Check if character is a digit (0-9)
 
@@ -138,7 +138,7 @@ process_char:
     li $t1, '9'   #'9' ASCII
     bgt $t0, $t1, check_lower
     subu $t2, $t0, '0' #Converting the value to (0-9)
-    j valid_dgit
+    j valid_digit
 
 check_lower:
     #check lowercase a-z(ASCII 97-122)
@@ -148,7 +148,7 @@ check_lower:
     bgt $t0, $t1, check_upper
     subu $t2, $t0, 'a'   # c - 'a'
     addi $t2, $t2, 10 #value = 10 + (c-'a')
-    j valid_dgit 
+    j valid_digit 
 check_upper:
     #Check uppercase A-Z(ASCII 65-91)
     li $t1, 'A'
