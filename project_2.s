@@ -184,4 +184,9 @@ return_null:
     li $v0, 0x7FFFFFFF  #Return Null code
 epilogue:
     #Restore registers
-    
+    lw $s0, 0($sp)
+    lw $s1, 4($sp)
+    lw $s2, 8($sp)
+    lw $s3, 12($sp)
+    addi $sp, $sp, 16
+    jr $ra
