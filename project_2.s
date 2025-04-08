@@ -106,10 +106,18 @@ exit_program:
     li $v0, 10      #Exit
     syscall 
 
-#Sub program: We need to get the substring value 
-#Input is $a0 address of the ten character substring 
-#Output $v0 G-H or 0x7FFFFFFFF
+    #Sub program: We need to get the substring value 
+    #Input is $a0 address of the ten character substring 
+    #Output $v0 G-H or 0x7FFFFFFFF
+get_substring_value:
+    #Save registers
+    addi $sp, $sp, -16
+    sw $s0, 0($sp)
+    sw $s1, 4($sp)
+    sw $s2, 8($sp)
+    sw $s3, 12($sp)
 
+    
 
 process_loop:
     bge $t0, 10, end_loop  #Exit loop if i >= 10
