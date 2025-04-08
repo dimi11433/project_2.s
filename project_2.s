@@ -41,6 +41,14 @@ process_substrings:
     la $t6, substring_buf
     li $t7, 0      #Char counter (0-9)
 
+fill_substring:
+    bge $t7, 10, call_subprogram
+
+    #Calculate position in input
+    mul $t8, $t5, 10 #Substring start index
+    add $t8, $t8, $t7 
+    bge $t8, $t1, pad_space
+
 
 process_loop:
     bge $t0, 10, end_loop  #Exit loop if i >= 10
