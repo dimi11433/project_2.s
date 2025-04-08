@@ -1,6 +1,8 @@
 .data 
-input_buffer: .space 11 #Buffer to hold 10 characters + null
-n_a: .asciiz "N/A"
+input_buffer: .space 1001 #Buffer for user input(1000 chars + Null)
+substring_buff .space11   #10 chars plus null for processing
+null_str: .asciiz "NULL" #Null output string 
+semicolon: .asciiz ";"  #Seperator 
 
 .text
 .globl main
