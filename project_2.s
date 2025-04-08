@@ -51,7 +51,7 @@ fill_substring:
 
     #Load from input
     la $t9, input_buffer
-    add $t8, $t8, $t7 
+    add $t9, $t9, $t8 
     lb $t9, 0($t9)
     j store_char
 
@@ -78,7 +78,7 @@ call_subprogram:
     lw $t3, 0($sp)
     lw $t5, 4($sp)
     lw $t1, 8($sp)
-    lw $ra 12($sp)
+    lw $ra, 12($sp)
     addi $sp, $sp, 16 
 
     #Handle result
