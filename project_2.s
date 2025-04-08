@@ -88,7 +88,12 @@ call_subprogram:
     li $v0, 1
     syscall
     j check_separator
-
+print_null:
+    la $a0, null_str   #Print "NULL"
+    li $vo, 4
+    syscall
+check_separator:
+    addi $t5, $t5, 1
 
 process_loop:
     bge $t0, 10, end_loop  #Exit loop if i >= 10
