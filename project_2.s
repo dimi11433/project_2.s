@@ -93,7 +93,14 @@ print_null:
     li $vo, 4
     syscall
 check_separator:
-    addi $t5, $t5, 1
+    addi $t5, $t5, 1     #Increment substring index
+    beq $t5, $t3, process_substrings #Skip seperator if last
+
+    la $a0, semicolon
+    li $v0, 4
+    syscall
+
+    j process_substrings
 
 process_loop:
     bge $t0, 10, end_loop  #Exit loop if i >= 10
