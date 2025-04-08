@@ -117,7 +117,12 @@ get_substring_value:
     sw $s2, 8($sp)
     sw $s3, 12($sp)
 
-    
+    li $s0, 0   #G sum
+    li $s1, 0  #H sum
+    li $s2, 0 #Char index(0-9)
+    li $s3, 0 #Valid digit counter 
+
+
 
 process_loop:
     bge $t0, 10, end_loop  #Exit loop if i >= 10
