@@ -150,13 +150,13 @@ check_lower:
     j valid_dgit 
 check_upper:
     #Check uppercase A-Z(ASCII 65-91)
-    li $t3, 65
-    li $t4, 91
-    blt $t2, $t3, invalid_char
-    bgt $t2, $t4, invalid_char
-    sub $t5, $t2, $t3 # c - 'A'
-    addi $t5, $t5, 10 #value = 10 + (c- 'A')
-    j add_sum
+    li $t1, 'A'
+    blt $t0, $t1, invalid
+    li $t11, 'Q'
+    bgt $t0, $t1, invalid
+    subu $t2, $t0, 'A' # c - 'A'
+    addi $t2, $t2, 10 #value = 10 + (c- 'A')
+    j valid_digit
 invalid_char:
     j next_char   #Skip invalid character 
 add_sum:
