@@ -11,16 +11,27 @@ main:
     #Read input string
     li $v0, 8   #syscall 8 :read string
     la $a0, input_buffer #load buffer address
-    li $a1, 11 #read up to 10 characters
+    li $a1, 1001 #read up to 1000 characters
     syscall
 
     #Calculate input length
     la $t0, input_buffer
-    li $t1, 0
+    li $t1, 0  #Counter
 find_length:
     lb $t2, 0($t0)
     beqz $t2, end_find_length #Null terminator
-    li $t3, 10
+    li $t3, 10  #Check for new line
+    beq $t2, $t3, replace_newline
+    addi $t0, $t0, 1
+    addi $t1, $t1, 1
+    j find_length
+
+replace_newline:
+    sb $zero, 0($t0)  #Replace newline with null
+
+end_find_length:
+
+
 
 process_loop:
     bge $t0, 10, end_loop  #Exit loop if i >= 10
