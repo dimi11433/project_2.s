@@ -157,8 +157,11 @@ check_upper:
     subu $t2, $t0, 'A' # c - 'A'
     addi $t2, $t2, 10 #value = 10 + (c- 'A')
     j valid_digit
-invalid_char:
-    j next_char   #Skip invalid character 
+
+invalid:
+    addi $a0, $a0, 1 #Next character
+    addi $s2, $s2, 1
+    j process_char  #Skip invalid character 
 add_sum:
     #Check if in first half 
     blt $t0, 5, add_g
