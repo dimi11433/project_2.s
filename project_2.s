@@ -49,6 +49,12 @@ fill_substring:
     add $t8, $t8, $t7 
     bge $t8, $t1, pad_space
 
+    #Load from input
+    la $t9, input_buffer
+    add $t8, $t8, $t7 
+    lb $t9, 0($t9)
+    j store_char
+
 
 process_loop:
     bge $t0, 10, end_loop  #Exit loop if i >= 10
