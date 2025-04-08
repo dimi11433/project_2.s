@@ -144,7 +144,7 @@ check_lower:
     #check lowercase a-z(ASCII 97-122)
     li $t1, 'a'
     blt $t0, $t1, check_upper
-    li $t1, 'q'
+    li $t1, 'p'
     bgt $t0, $t1, check_upper
     subu $t2, $t0, 'a'   # c - 'a'
     addi $t2, $t2, 10 #value = 10 + (c-'a')
@@ -153,7 +153,7 @@ check_upper:
     #Check uppercase A-Z(ASCII 65-91)
     li $t1, 'A'
     blt $t0, $t1, invalid
-    li $t1, 'Q'
+    li $t1, 'P'
     bgt $t0, $t1, invalid
     subu $t2, $t0, 'A' # c - 'A'
     addi $t2, $t2, 10 #value = 10 + (c- 'A')
