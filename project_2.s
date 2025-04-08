@@ -141,13 +141,13 @@ process_char:
 
 check_lower:
     #check lowercase a-z(ASCII 97-122)
-    li $t3, 97
-    li $t4, 122
-    blt $t2, $t3, check_upper
-    bgt $t2, $t4, check_upper
-    sub $t5, $t2, $t3   # c - 'a'
-    addi $t5, $t5, 10 #value = 10 + (c-'a')
-    j add_sum 
+    li $t1, 'a'
+    blt $t0, $t1, check_upper
+    li $t1, 'q'
+    bgt $t0, $t1, check_upper
+    subu $t2, $t0, 'a'   # c - 'a'
+    addi $t2, $t2, 10 #value = 10 + (c-'a')
+    j valid_dgit 
 check_upper:
     #Check uppercase A-Z(ASCII 65-91)
     li $t3, 65
